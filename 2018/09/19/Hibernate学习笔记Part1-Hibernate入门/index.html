@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="MBC">
 <meta property="og:description" content="1. Hibernate框架概述1.1 什么是框架框架：指的是软件的半成品，已经完成了部分功能。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-19T14:33:30.877Z">
+<meta property="og:updated_time" content="2018-09-19T23:36:32.437Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hibernate学习笔记Part1 Hibernate入门">
 <meta name="twitter:description" content="1. Hibernate框架概述1.1 什么是框架框架：指的是软件的半成品，已经完成了部分功能。">
@@ -353,7 +353,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,599
+                  3,603
                 </span>
               
 
@@ -520,10 +520,10 @@
 <p><code>get</code>方法采用的是立即加载，执行到这行代码的时候，就会马上发送SQL语句去查询。</p>
 <p><code>load</code>方法采用的延迟加载(lazy，懒加载)，执行到这行代码的时候，不会发送SQL语句。当真正使用这个对象的时候才会发送SQL语句。</p>
 <p><strong>(2) 返回的对象</strong></p>
-<p><strong>查询成功时：</strong></p>
+<p><strong>查询到记录时：</strong></p>
 <p><code>get</code>方法返回的是查询到的真实对象本身。</p>
 <p><code>load</code>方法返回的是代理对象。利用<code>javassist</code>技术产生的代理。(<em>mark…</em>)</p>
-<p><strong>查询失败时：</strong></p>
+<p><strong>没有查询到记录时：</strong></p>
 <p><code>get</code>方法返回的是<code>null</code></p>
 <p><code>load</code>方法返回的是<code>ObjectNotFoundException</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testGetAndLoad</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Session session = HibernateUtil.openSession();</span><br><span class="line">	Transaction transaction = session.beginTransaction();</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//get：当执行时，会马上发送SQL语句去查询</span></span><br><span class="line">	Customer customer1 = session.get(Customer.class, <span class="number">1L</span>);					</span><br><span class="line">	System.out.println(customer1);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//load：延迟加载</span></span><br><span class="line">	Customer customer2 = session.load(Customer.class, <span class="number">5L</span>);</span><br><span class="line">	<span class="comment">//当要使用查询的对象时，才发送SQL去查询，即执行以下代码时才发送SQL语句</span></span><br><span class="line">	System.out.println(customer2);</span><br><span class="line">	</span><br><span class="line">	transaction.commit();</span><br><span class="line">	session.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

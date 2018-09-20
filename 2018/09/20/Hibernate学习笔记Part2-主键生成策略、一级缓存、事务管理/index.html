@@ -95,7 +95,7 @@
 <meta property="og:description" content="1. Hibernate持久化类的编写规则1.1 什么是持久化类持久化：在Hibernate中指的是将内存中的数据永久存储到关系数据库中。 持久化类：指的是一个通过映射文件与数据库的表建立了关系的类。 可以理解为：持久化类 = Java类 + 映射文件。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/4CF498EF23514CB98822AB6E8EFFFC31?method=download&shareKey=1a129d7c39bda7c75e9f433786185523">
-<meta property="og:updated_time" content="2018-09-20T10:40:31.184Z">
+<meta property="og:updated_time" content="2018-09-20T13:51:40.986Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hibernate学习笔记Part2 主键生成策略、一级缓存、事务管理">
 <meta name="twitter:description" content="1. Hibernate持久化类的编写规则1.1 什么是持久化类持久化：在Hibernate中指的是将内存中的数据永久存储到关系数据库中。 持久化类：指的是一个通过映射文件与数据库的表建立了关系的类。 可以理解为：持久化类 = Java类 + 映射文件。">
@@ -400,10 +400,11 @@
 <li><p>原因：基本数据类型默认是0，而0会存在歧义。例如一张表中存在一个字段为int类型，假设是salary，代表工资。若salary为0的话，那么就有可能会存在歧义。一种情况是：往表中添加数据时没有设置salary字段，那么salary字段就为默认的0。另一种情况假设是：本月的工资为0。那么当我们从表中查询出相应的记录时，若salary为0的话，我们就无法区分是哪一种情况。</p>
 </li>
 <li><p>若使用包装类的话，没有设置字段的情况就默认为null，若为0的话，直接设置为0即可。</p>
+</li>
+</ul>
 <p><strong>5. 持久化类不要使用final进行修饰</strong></p>
-</li>
-<li><p>原因：Hibernate中的延迟加载是使用javassist技术产生代理对象来实现的，而javassist技术是需要对持久化类进行继承。如果不能被继承，就不能产生代理对象，延迟加载也就失效了。</p>
-</li>
+<ul>
+<li>原因：Hibernate中的延迟加载是使用javassist技术产生代理对象来实现的，而javassist技术是需要对持久化类进行继承。如果不能被继承，就不能产生代理对象，延迟加载也就失效了。</li>
 </ul>
 <hr>
 <h3 id="2-Hibernate的主键生成策略"><a href="#2-Hibernate的主键生成策略" class="headerlink" title="2. Hibernate的主键生成策略"></a>2. Hibernate的主键生成策略</h3><h4 id="2-1-主键的分类"><a href="#2-1-主键的分类" class="headerlink" title="2.1 主键的分类"></a>2.1 主键的分类</h4><p><strong>(1)自然主键</strong>：主键本身就是表中的字段，有实际的意义。</p>

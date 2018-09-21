@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="MBC">
 <meta property="og:description" content="1. 数据库表与表之间的关系1.1 一对多关系一对多的关系 （1）一个部门对应多个员工，一个员工只能属于一个部门。 （2）一个客户对应多个联系人，一个联系人只能属于某一个客户">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-21T08:33:35.298Z">
+<meta property="og:updated_time" content="2018-09-21T08:38:38.891Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hibernate学习笔记Part3">
 <meta name="twitter:description" content="1. 数据库表与表之间的关系1.1 一对多关系一对多的关系 （1）一个部门对应多个员工，一个员工只能属于一个部门。 （2）一个客户对应多个联系人，一个联系人只能属于某一个客户">
@@ -404,7 +404,7 @@
 <p>(2) 操作多的一方的时候，是否操作到一的一方。</p>
 <h4 id="3-3-级联保存或更新"><a href="#3-3-级联保存或更新" class="headerlink" title="3.3 级联保存或更新"></a>3.3 级联保存或更新</h4><p><strong>(1) 保存一的一方，级联保存或更新多的一方</strong></p>
 <p>通过保存客户(一)级联联系人(多)来演示。</p>
-<p>在一的映射表中配置级联保存或更新，即在set标签中添加属性<code>cascade=&quot;save-update&quot;</code><br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">set</span> <span class="attr">name</span>=<span class="string">"linkMans"</span> <span class="attr">cascade</span>=<span class="string">"save-update"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- column: 多的一方的外键名称 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">key</span> <span class="attr">column</span>=<span class="string">"lkm_cust_id"</span>&gt;</span><span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 多的一方的类的全路径 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">one-to-many</span> <span class="attr">class</span>=<span class="string">"com.mbc.domain.LinkMan"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>在一的映射表中配置级联保存或更新，即在set标签中添加属性<code>cascade=&quot;save-update&quot;</code><br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">set</span> <span class="attr">name</span>=<span class="string">"linkMans"</span> <span class="attr">cascade</span>=<span class="string">"save-update"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- column: 多的一方的外键名称 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">key</span> <span class="attr">column</span>=<span class="string">"lkm_cust_id"</span>&gt;</span><span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 多的一方的类的全路径 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">one-to-many</span> <span class="attr">class</span>=<span class="string">"com.mbc.domain.LinkMan"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>测试代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="comment">//已经在一的一边开启了级联保存</span></span><br><span class="line"><span class="comment">//测试一对多关系中，保存一的一边级联保存多的一边</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Session session = HibernateUtil.getCurrentSession();</span><br><span class="line">    Transaction transaction = session.beginTransaction();</span><br><span class="line">    </span><br><span class="line">    Customer customer = <span class="keyword">new</span> Customer();</span><br><span class="line">    customer.setCust_name(<span class="string">"keni"</span>);</span><br><span class="line">    </span><br><span class="line">    LinkMan linkMan = <span class="keyword">new</span> LinkMan();</span><br><span class="line">    linkMan.setLkm_name(<span class="string">"shaxia"</span>);</span><br><span class="line">    </span><br><span class="line">    customer.getLinkMans().add(linkMan);</span><br><span class="line">    linkMan.setCustomer(customer);</span><br><span class="line">    <span class="comment">//保存一的一边即可</span></span><br><span class="line">    session.save(customer);</span><br><span class="line">    transaction.commit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><strong>(2) 保存多的一方，级联保存或更新一的一方</strong></p>
 <p>在多的一方开启级联保存或更新，在<code>many-to-one</code>标签添加<code>cascade=&quot;save-update&quot;</code>属性</p>
@@ -512,6 +512,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/09/21/Hibernate学习笔记Part4/" rel="prev" title="Hibernate学习笔记Part4">
+                Hibernate学习笔记Part4 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -591,7 +595,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -736,7 +740,7 @@
     
       <span class="post-meta-item-text">全站字数统计&#58;</span>
     
-    <span title="全站字数统计">12.9k</span>
+    <span title="全站字数统计">14.5k</span>
   
 </div>
 

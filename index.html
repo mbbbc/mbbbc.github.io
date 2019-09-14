@@ -269,177 +269,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/14/Tomcat部署项目/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MBC">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar2.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MBC">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/09/14/Tomcat部署项目/" itemprop="url">Tomcat部署项目</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-14T09:36:38+08:00">
-                2019-09-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  527
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>1.下载Tomcat服务器</strong></p>
-<p>选择版本下载即可。官方链接：<a href="https://tomcat.apache.org" target="_blank" rel="noopener">https://tomcat.apache.org/download-70.cgi</a></p>
-<p><strong>2.启动Tomcat</strong></p>
-<p>把文件解压，找到bin目录下startup.bat的文件，点击即可启动。（电脑需要配置好JAVA_HOME的环境变量）</p>
-<p><img src="https://img-blog.csdn.net/20180608105812160?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L015QmFieUNoYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p>启动成功</p>
-<p><img src="https://img-blog.csdn.net/20180608110508625?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L015QmFieUNoYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p>在浏览器地址栏中输入 <a href="http://localhost:8080/，若出现如下界面也说明成功启动" target="_blank" rel="noopener">http://localhost:8080/，若出现如下界面也说明成功启动</a></p>
-<p><img src="https://img-blog.csdn.net/20180608110835557?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L015QmFieUNoYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p><strong>3.部署项目到Tomcat</strong></p>
-<p><strong>1）把要部署的项目的直接放到<em>webapps</em>目录下</strong></p>
-<p><img src="https://img-blog.csdn.net/20180608111619781?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L015QmFieUNoYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>这里我放的目录为myproject（里面有一个index.html的文件）<br><img src="https://img-blog.csdn.net/20180608111817665?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L015QmFieUNoYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p>然后在浏览器输入<a href="http://localhost:8080/myproject/index.html" target="_blank" rel="noopener">http://localhost:8080/myproject/index.html</a>      验证<br><img src="https://img-blog.csdn.net/20180608112340932?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L015QmFieUNoYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p><strong>2）修改conf/server.xml文件</strong></p>
-<p>1.找server.xml文件中的Host元素结点</p>
-<p>2.添加Context元素</p>
-<p><strong>docBase</strong>:项目的路径地址，例如我这是E:\JavaWebNote\myproject\index.html</p>
-<p><strong>path</strong>:对应的虚拟路径,要以/打头，即所谓的虚拟路径，可以看做用test映射了E:\JavaWebNote\myproject路径</p>
-<p>相应的访问方式就变成了：<a href="http://localhost:8080/test/index.html" target="_blank" rel="noopener">http://localhost:8080/test/index.html</a></p>
-<p><img src="https://img-blog.csdn.net/2018060812494266?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L015QmFieUNoYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p>修改好后保存文件，然后<strong>重启Tomcat</strong>,在浏览器输入<a href="http://localhost:8080/test/index.html" target="_blank" rel="noopener">http://localhost:8080/test/index.html</a><br><img src="https://img-blog.csdn.net/20180608124949864?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L015QmFieUNoYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p><strong>3)在conf/catalina/localhost/ 文件夹下新建一个xml文件</strong></p>
-<p>文件的名字可以自己定义,往文件写上Context元素<br><img src="https://img-blog.csdn.net/20180608130445619?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L015QmFieUNoYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>相应的访问方式为：<a href="http://localhost:8080/page/index.html" target="_blank" rel="noopener">http://localhost:8080/page/index.html</a></p>
-<p>其中page是新建的xml文件的文件名，即直接用<strong>xml文件的文件名</strong>映射了<br>index.html文件所在的目录<br><img src="https://img-blog.csdn.net/20180608130908106?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L015QmFieUNoYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p><strong>4.)把Eclipse项目发布到Tomcat</strong></p>
-<p>1.新建一个服务器<br><img src="https://img-blog.csdn.net/20180608145610437?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L015QmFieUNoYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>2.在Apache分类中找到相应的Tomcat版本<br><img src="https://img-blog.csdn.net/20180608145621482?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L015QmFieUNoYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>3.找到新建的服务器右键，选择open<br><img src="https://img-blog.csdn.net/20180608150113402?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L015QmFieUNoYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>4.找到Server Locations,然后选择Use Tomcat installation,保存。<br><img src="https://img-blog.csdn.net/20180608150251346?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L015QmFieUNoYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>5.创建Web工程来测试</p>
-<p>新建一个动态网页工程<br><img src="https://img-blog.csdn.net/20180608150705617?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L015QmFieUNoYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br><img src="https://img-blog.csdn.net/2018060815072489?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L015QmFieUNoYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>在工程的WebContent下新建一个index.html文件<br><img src="https://img-blog.csdn.net/20180608151130937?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L015QmFieUNoYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>index.html文件的内容<br><img src="https://img-blog.csdn.net/20180608151259483?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L015QmFieUNoYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>5.Run on Server<br><img src="https://img-blog.csdn.net/20180608151501419?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L015QmFieUNoYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p>6.配置完成<br><img src="https://img-blog.csdn.net/20180608151701347?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L015QmFieUNoYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p>查看Tomcat的目录，可发现目录中多了一个wtpwebapps的文件夹<br><img src="https://img-blog.csdn.net/2018060815194139?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L015QmFieUNoYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>在eclipse新建的web工程能在这个文件夹中找到<br><img src="https://img-blog.csdn.net/20180608152139128?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L015QmFieUNoYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>同时在conf/server.xml中<br><img src="https://img-blog.csdn.net/20180608152408511?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L015QmFieUNoYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>这说明eclipse把项目部署到Tomcat上是需要修改server.xml文件。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-<div>
-  
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/13/test/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1622,7 +1451,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1751,7 +1580,7 @@
     
       <span class="post-meta-item-text">全站字数统计&#58;</span>
     
-    <span title="全站字数统计">15.1k</span>
+    <span title="全站字数统计">14.6k</span>
   
 </div>
 
